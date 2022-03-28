@@ -1,0 +1,7 @@
+.popup__header {
+    width: 518px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+}

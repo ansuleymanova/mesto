@@ -1,0 +1,6 @@
+.profile-info__heading-edit {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+}
