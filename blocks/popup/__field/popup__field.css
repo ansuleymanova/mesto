@@ -1,4 +1,5 @@
 .popup__field {
+    font-family: 'Inter-Regular', sans-serif;
     border: none;
     margin: 0 0 27px;
     width: 85%;
@@ -11,6 +12,6 @@
     font-size: .875rem;
 }
 
-#bio {
+.popup__field:last-of-type {
     margin-bottom: 51px;
 }
