@@ -6,9 +6,10 @@
     width: 150px;
     height: 50px;
     background-color: transparent;
-    border: 1px solid #fff;
+    border: 2px solid #fff;
     transition: opacity .5s ease-out;
     cursor: pointer;
+    border-radius: 2px;
 }
 
 .profile-area__add-button:hover {

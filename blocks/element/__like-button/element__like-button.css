@@ -8,8 +8,9 @@
     border: none;
     margin: 0 1px 0;
     transition: opacity .5s ease-out;
+    cursor: pointer;
 }
 
 .element__like-button:hover {
-    opacity: .4;
+    opacity: .5;
 }

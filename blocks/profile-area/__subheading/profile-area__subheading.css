@@ -1,12 +1,18 @@
-.profile-info__subheading {
+.profile-area__subheading {
     color: #fff;
     font-weight: normal;
-    font-size: 1.125rem;
+    font-size: 18px;
     line-height: 1.22;
     margin: 16px 0 0;
-    max-width: 880px;
     text-wrap: none;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+@media screen and (max-width: 540px) {
+    .profile-area__subheading {
+        font-size: 14px;
+    }
 }

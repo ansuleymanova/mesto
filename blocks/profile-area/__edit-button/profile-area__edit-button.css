@@ -1,4 +1,4 @@
-.profile-info__edit-button {
+.profile-area__edit-button {
     background-image: url("../../../images/edit.svg");
     background-repeat: no-repeat;
     background-color: transparent;
@@ -7,11 +7,12 @@
     border: 1px solid #fff;
     height: 24px;
     width: 24px;
+    min-width: 24px;
     margin: 0 0 0 25px;
     transition: opacity .5s ease-out;
     cursor: pointer;
 }
 
-.profile-info__edit-button:hover {
+.profile-area__edit-button:hover {
     opacity: .6;
 }

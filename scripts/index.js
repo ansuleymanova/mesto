@@ -1,34 +1,30 @@
-let editButton = document.querySelector('.profile-info__edit-button');
+let editButton = document.querySelector('.profile-area__edit-button');
 let popup = document.querySelector('.popup');
 let closeButton = document.querySelector('.popup__close-icon')
-let saveButton = document.querySelector('.popup__save-button')
-let profileInfo = document.querySelector('.profile-info');
+let profileInfo = document.querySelector('.profile-area__profile-info');
+let heading = profileInfo.querySelector('.profile-area__heading');
+let subheading = profileInfo.querySelector('.profile-area__subheading');
+let nameField = document.getElementById('name');
+let bioField = document.getElementById('bio');
+let form = document.querySelector('.popup__container');
 
-function popupOpen() {
+function openPopup() {
     popup.classList.add('popup_opened');
-    let name = profileInfo.querySelector('.profile-info__heading').textContent;
-    let bio = profileInfo.querySelector('.profile-info__subheading').textContent;
-    let nameField = document.getElementById('name');
-    let bioField = document.getElementById('bio');
-    nameField.setAttribute('placeholder', name);
-    bioField.setAttribute('placeholder', bio);
+    nameField.value = heading.textContent;
+    bioField.value = subheading.textContent;
 }
 
-function popupClose() {
+function closePopup() {
     popup.classList.remove('popup_opened');
 }
 
 function formSubmitHandler(evt) {
     evt.preventDefault();
-    let name = document.getElementById('name');
-    let bio = document.getElementById('bio');
-    let heading = profileInfo.querySelector('.profile-info__heading');
-    let subheading = profileInfo.querySelector('.profile-info__subheading');
-    heading.textContent = name.value;
-    subheading.textContent = bio.value;
-    popupClose();
+    heading.textContent = nameField.value;
+    subheading.textContent = bioField.value;
+    closePopup();
 }
 
-editButton.addEventListener('click', popupOpen);
-closeButton.addEventListener('click', popupClose);
-saveButton.addEventListener('click', formSubmitHandler);
+editButton.addEventListener('click', openPopup);
+closeButton.addEventListener('click', closePopup);
+form.addEventListener('submit', formSubmitHandler);
