@@ -11,6 +11,8 @@
         <img alt="Mesto Россия" src="images/logo.svg" class="header__logo">
     </header>
     <main class="main">
+
+    <!-- user profile area -->
     <section class="profile-area">
         <div class="profile-area__profile">
             <img class="profile-area__avatar" alt="Аватар пользователя" src="images/avatar.jpg">
@@ -25,55 +27,19 @@
         <button type="button" class="profile-area__add-button" aria-label="Добавить пост"></button>
     </section>
 
+    <!-- cards area -->
     <section class="elements">
-        <article class="element">
-            <img class="element__picture" src="images/karachaevsk.jpg" alt="Кирпичный домик в горах">
-            <div class="element__info">
-                <h3 class="element__heading">Карачаевск</h3>
-                <button type="button" class="element__like-button" aria-label="Нравится"></button>
-            </div>
-        </article>
-        <article class="element">
-            <img class="element__picture"  src="images/elbrus.jpg" alt="Эльбрус">
-            <div class="element__info">
-                <h3 class="element__heading">Гора Эльбрус</h3>
-                <button type="button" class="element__like-button" aria-label="Нравится"></button>
-            </div>
-        </article>
-        <article class="element">
-            <img class="element__picture" src="images/dombay.jpg" alt="Домбай">
-            <div class="element__info">
-                <h3 class="element__heading">Домбай</h3>
-                <button type="button" class="element__like-button" aria-label="Нравится"></button>
-            </div>
-        </article>
-        <article class="element">
-            <img class="element__picture"  src="images/elbrus.jpg" alt="Эльбрус">
-            <div class="element__info">
-                <h3 class="element__heading">Гора Эльбрус</h3>
-                <button type="button" class="element__like-button" aria-label="Нравится"></button>
-            </div>
-        </article>
-        <article class="element">
-            <img class="element__picture" src="images/dombay.jpg" alt="Домбай">
-            <div class="element__info">
-                <h3 class="element__heading">Домбай</h3>
-                <button type="button" class="element__like-button" aria-label="Нравится"></button>
-            </div>
-        </article>
-        <article class="element">
-            <img class="element__picture" src="images/karachaevsk.jpg" alt="Кирпичный домик в горах">
-            <div class="element__info">
-                <h3 class="element__heading">Карачаево-Черкессия</h3>
-                <button type="button" class="element__like-button" aria-label="Нравится"></button>
-            </div>
-        </article>
     </section>
+
     </main>
+
+    <!-- footer -->
     <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
-    <div class="popup">
+
+    <!-- edit profile popup -->
+    <div class="popup popup_profile">
         <button type="button" class="popup__close-icon" aria-label="Закрыть"></button>
         <form class="popup__container" name="editProfile">
             <h2 class="popup__title">Редактировать профиль</h2>
@@ -84,6 +50,43 @@
             <button type="submit" class="popup__save-button">Сохранить</button>
         </form>
     </div>
+
+    <!-- add card popup -->
+    <div class="popup popup_card">
+        <button type="button" class="popup__close-icon" aria-label="Закрыть"></button>
+        <form class="popup__container" name="addCard">
+            <h2 class="popup__title">Новое место</h2>
+            <label for="title"></label>
+            <input type="text" name="title" class="popup__field" id="title" placeholder="Название">
+            <label for="picture-link"></label>
+            <input type="text" name="picture-link" class="popup__field" id="picture-link" placeholder="Ссылка на картинку">
+            <button type="submit" class="popup__save-button">Сохранить</button>
+        </form>
+    </div>
+
+    <!-- closeup popup -->
+    <div class="popup popup_closeup">
+        <div class="popup__box">
+            <button type="button" class="popup__close-icon popup__close-icon_closeup" aria-label="Закрыть"></button>
+            <img class="popup__image" alt="" src="">
+            <p class="popup__caption"></p>
+        </div>
+    </div>
+
+
+    <!-- card template -->
+    <template id="card">
+        <article class="element">
+            <button type="button" class="element__delete-button" aria-label="Удалить"></button>
+            <img class="element__picture" alt="" src="">
+            <div class="element__info">
+                <h3 class="element__heading"></h3>
+                <button type="button" class="element__like-button" aria-label="Нравится"></button>
+            </div>
+        </article>
+    </template>
+
 <script src="scripts/index.js"></script>
+
 </body>
 </html>
