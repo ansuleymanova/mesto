@@ -32,5 +32,10 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/_profile/popup_profile.css);
 @import url(../blocks/popup/_card/popup_card.css);
+@import url(../blocks/popup/__close-icon/_closeup/popup__close-icon_closeup.css);
+@import url(../blocks/popup/__box/popup__box.css);
+@import url(../blocks/popup/__image/popup__image.css);
+@import url(../blocks/popup/__caption/popup__caption.css);
+@import url(../blocks/popup/_closeup/popup_closeup.css);
 
 
