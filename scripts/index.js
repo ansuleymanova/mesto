@@ -37,7 +37,6 @@ function createCard(item) {
         openModalWindow(popupCloseup);
         const popupCloseupImage = popupCloseup.querySelector('.popup__image');
         const popupCloseupCaption = popupCloseup.querySelector('.popup__caption');
-        const popupCloseupClose = popupCloseup.querySelector('.popup__close-icon');
         popupCloseupImage.setAttribute('src', item.link);
         popupCloseupImage.setAttribute('alt', item.name);
         popupCloseupCaption.textContent = item.name;
