@@ -21,6 +21,6 @@ const initialCards = [
     },
     {
         name: 'Алтай',
-        link: '../images/altay.jpg'
+        link: 'https://disk.yandex.ru/i/5ZCoGwswpk0cNg'
     }
 ];
