@@ -39,33 +39,33 @@
     </footer>
 
     <!-- edit profile popup -->
-    <div class="popup popup_profile">
+    <div class="popup popup_type_profile">
         <button type="button" class="popup__close-icon" aria-label="Закрыть"></button>
         <form class="popup__container" name="editProfile">
             <h2 class="popup__title">Редактировать профиль</h2>
             <label for="name"></label>
-            <input type="text" name="name" class="popup__field" id="name">
+            <input type="text" name="name" class="popup__field popup__field_type_name" id="name">
             <label for="bio"></label>
-            <input type="text" name="bio" class="popup__field" id="bio">
+            <input type="text" name="bio" class="popup__field popup__field_type_bio" id="bio">
             <button type="submit" class="popup__save-button">Сохранить</button>
         </form>
     </div>
 
     <!-- add card popup -->
-    <div class="popup popup_card">
+    <div class="popup popup_type_card">
         <button type="button" class="popup__close-icon" aria-label="Закрыть"></button>
         <form class="popup__container" name="addCard">
             <h2 class="popup__title">Новое место</h2>
             <label for="title"></label>
-            <input type="text" name="title" class="popup__field" id="title" placeholder="Название">
+            <input type="text" name="title" class="popup__field popup__field_type_title" id="title" placeholder="Название">
             <label for="picture-link"></label>
-            <input type="text" name="picture-link" class="popup__field" id="picture-link" placeholder="Ссылка на картинку">
+            <input type="text" name="picture-link" class="popup__field popup__field_type_picture-link" id="picture-link" placeholder="Ссылка на картинку">
             <button type="submit" class="popup__save-button">Сохранить</button>
         </form>
     </div>
 
     <!-- closeup popup -->
-    <div class="popup popup_closeup">
+    <div class="popup popup_type_closeup">
         <div class="popup__box">
             <button type="button" class="popup__close-icon popup__close-icon_closeup" aria-label="Закрыть"></button>
             <img class="popup__image" alt="token" src="#">
@@ -85,7 +85,7 @@
             </div>
         </article>
     </template>
-
+<script src="scripts/cards.js"></script>
 <script src="scripts/index.js"></script>
 
 </body>
