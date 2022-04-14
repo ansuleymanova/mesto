@@ -6,6 +6,7 @@ const popupCloseup = document.querySelector('.popup_type_closeup');
 const cardsContainer = document.querySelector('.elements');
 const buttonCloseProfile = popupProfile.querySelector('.popup__close-icon');
 const buttonCloseCard = popupCard.querySelector('.popup__close-icon');
+const buttonCloseCloseup = popupCloseup.querySelector('.popup__close-icon');
 const profileInfo = document.querySelector('.profile-area__profile-info');
 const heading = profileInfo.querySelector('.profile-area__heading');
 const subheading = profileInfo.querySelector('.profile-area__subheading');
@@ -33,16 +34,13 @@ function createCard(item) {
         cardElement.remove();
     });
     cardImage.addEventListener('click', function() {
-        popupCloseup.classList.add('popup_opened');
+        openModalWindow(popupCloseup);
         const popupCloseupImage = popupCloseup.querySelector('.popup__image');
         const popupCloseupCaption = popupCloseup.querySelector('.popup__caption');
         const popupCloseupClose = popupCloseup.querySelector('.popup__close-icon');
         popupCloseupImage.setAttribute('src', item.link);
         popupCloseupImage.setAttribute('alt', item.name);
         popupCloseupCaption.textContent = item.name;
-        popupCloseupClose.addEventListener('click', function () {
-            popupCloseup.classList.remove('popup_opened');
-        })
     });
     return cardElement;
 }
@@ -94,5 +92,6 @@ buttonEditProfile.addEventListener('click', openPopupProfile);
 buttonAddCard.addEventListener('click', openPopupCard)
 buttonCloseProfile.addEventListener('click', () => closeModalWindow(popupProfile));
 buttonCloseCard.addEventListener('click', () => closeModalWindow(popupCard));
+buttonCloseCloseup.addEventListener('click', () => closeModalWindow(popupCloseup));
 profileForm.addEventListener('submit', formProfileSubmitHandler);
 cardForm.addEventListener('submit', formCardSubmitHandler);
