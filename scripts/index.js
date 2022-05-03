@@ -18,7 +18,7 @@ const profileForm = document.querySelector('.popup_type_profile');
 const cardForm = document.querySelector('.popup_type_card');
 const cardTemplate = document.querySelector('#card').content;
 
-function createCard(item) {
+const createCard = (item)=> {
     const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
     const cardImage = cardElement.querySelector('.element__picture');
     const cardHeading = cardElement.querySelector('.element__heading');
@@ -44,13 +44,13 @@ function createCard(item) {
     return cardElement;
 }
 
-function renderCard (item) {
+const renderCard = (item) => {
     cardsContainer.prepend(createCard(item));
 }
 
 initialCards.forEach((item) => renderCard(item));
 
-function formCardSubmitHandler(evt) {
+const formCardSubmitHandler = (evt) => {
     evt.preventDefault();
     const item = {
         name: titleField.value,
@@ -60,35 +60,61 @@ function formCardSubmitHandler(evt) {
     closeModalWindow(popupCard);
 }
 
-function formProfileSubmitHandler(evt) {
+const formProfileSubmitHandler = (evt) => {
     evt.preventDefault();
     heading.textContent = nameField.value;
     subheading.textContent = bioField.value;
     closeModalWindow(popupProfile);
 }
 
-function openModalWindow(modalWindow) {
-    modalWindow.classList.add('popup_opened')
+const openModalWindow = (modalWindow) => {
+    modalWindow.classList.add('popup_opened');
+    modalWindow.addEventListener('keydown', closePopupEsc);
+    modalWindow.addEventListener('mouseup', closePopupMouse);
 }
 
-function closeModalWindow(modalWindow) {
+const closeModalWindow = (modalWindow) => {
+    modalWindow.removeEventListener('keydown', closePopupEsc)
+    modalWindow.removeEventListener('mouseup', closePopupMouse)
     modalWindow.classList.remove('popup_opened')
+    const errors = modalWindow.querySelectorAll('.popup__input-error_active');
+    if (errors) {
+        errors.forEach((error) => {
+            error.classList.remove('popup__input-error_active');
+            error.textContent = '';
+        });
+    }
 }
 
-function openPopupProfile() {
-    openModalWindow(popupProfile);
+const openPopupProfile = () => {
     nameField.value = heading.textContent;
     bioField.value = subheading.textContent;
+    openModalWindow(popupProfile);
 }
 
-function openPopupCard() {
+const openPopupCard = () => {
     openModalWindow(popupCard);
     titleField.value = '';
     linkField.value = '';
 }
 
+const closePopupEsc = (evt) => {
+    if (evt.key === 'Escape') {
+        const modalWindow = document.querySelector('.popup_opened');
+        closeModalWindow(modalWindow);
+    }
+}
+
+const closePopupMouse = (evt) => {
+    const popupContainer = evt.target.closest('.popup__container');
+    if (!popupContainer) {
+        const modalWindow = document.querySelector('.popup_opened');
+        closeModalWindow(modalWindow);
+    }
+}
+
 buttonEditProfile.addEventListener('click', openPopupProfile);
-buttonAddCard.addEventListener('click', openPopupCard)
+buttonAddCard.addEventListener('click', openPopupCard);
 buttonCloseProfile.addEventListener('click', () => closeModalWindow(popupProfile));
 buttonCloseCard.addEventListener('click', () => closeModalWindow(popupCard));
 buttonCloseCloseup.addEventListener('click', () => closeModalWindow(popupCloseup));

@@ -12,8 +12,12 @@
     transition: opacity .5s ease-out;
     font-size: 18px;
     line-height: 1.2;
-    margin: 0 auto 37px;
+    margin: 51px auto 37px;
     cursor: pointer;
+}
+
+.popup__input-error_active + .popup__save-button {
+    margin-top: 32px;
 }
 
 .popup__save-button:hover {
