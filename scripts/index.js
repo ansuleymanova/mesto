@@ -17,6 +17,7 @@ const linkField = document.querySelector('.popup__field_type_picture-link');
 const profileForm = document.querySelector('.popup_type_profile');
 const cardForm = document.querySelector('.popup_type_card');
 const cardTemplate = document.querySelector('#card').content;
+const buttonSubmitCard = popupCard.querySelector('.popup__save-button');
 
 const createCard = (item)=> {
     const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
@@ -50,7 +51,7 @@ const renderCard = (item) => {
 
 initialCards.forEach((item) => renderCard(item));
 
-const formCardSubmitHandler = (evt) => {
+const handleCardSubmit = (evt) => {
     evt.preventDefault();
     const item = {
         name: titleField.value,
@@ -60,7 +61,7 @@ const formCardSubmitHandler = (evt) => {
     closeModalWindow(popupCard);
 }
 
-const formProfileSubmitHandler = (evt) => {
+const handleProfileSubmit = (evt) => {
     evt.preventDefault();
     heading.textContent = nameField.value;
     subheading.textContent = bioField.value;
@@ -69,14 +70,17 @@ const formProfileSubmitHandler = (evt) => {
 
 const openModalWindow = (modalWindow) => {
     modalWindow.classList.add('popup_opened');
-    modalWindow.addEventListener('keydown', closePopupEsc);
+    document.addEventListener('keydown', closePopupEsc);
     modalWindow.addEventListener('mouseup', closePopupMouse);
 }
 
 const closeModalWindow = (modalWindow) => {
-    modalWindow.removeEventListener('keydown', closePopupEsc)
+    document.removeEventListener('keydown', closePopupEsc)
     modalWindow.removeEventListener('mouseup', closePopupMouse)
     modalWindow.classList.remove('popup_opened')
+}
+
+const clearErrors = (modalWindow) => {
     const errors = modalWindow.querySelectorAll('.popup__input-error_active');
     if (errors) {
         errors.forEach((error) => {
@@ -89,6 +93,7 @@ const closeModalWindow = (modalWindow) => {
 const openPopupProfile = () => {
     nameField.value = heading.textContent;
     bioField.value = subheading.textContent;
+    clearErrors(popupProfile);
     openModalWindow(popupProfile);
 }
 
@@ -96,6 +101,8 @@ const openPopupCard = () => {
     openModalWindow(popupCard);
     titleField.value = '';
     linkField.value = '';
+    clearErrors(popupCard);
+    toggleButtonState([titleField, linkField], buttonSubmitCard, {inactiveButtonClass: 'popup__save-button_inactive'});
 }
 
 const closePopupEsc = (evt) => {
@@ -107,7 +114,8 @@ const closePopupEsc = (evt) => {
 
 const closePopupMouse = (evt) => {
     const popupContainer = evt.target.closest('.popup__container');
-    if (!popupContainer) {
+    const imageContainer = evt.target.closest('.popup__image');
+    if ((!popupContainer) && (!imageContainer)) {
         const modalWindow = document.querySelector('.popup_opened');
         closeModalWindow(modalWindow);
     }
@@ -118,5 +126,5 @@ buttonAddCard.addEventListener('click', openPopupCard);
 buttonCloseProfile.addEventListener('click', () => closeModalWindow(popupProfile));
 buttonCloseCard.addEventListener('click', () => closeModalWindow(popupCard));
 buttonCloseCloseup.addEventListener('click', () => closeModalWindow(popupCloseup));
-profileForm.addEventListener('submit', formProfileSubmitHandler);
-cardForm.addEventListener('submit', formCardSubmitHandler);
+profileForm.addEventListener('submit', handleProfileSubmit);
+cardForm.addEventListener('submit', handleCardSubmit);
