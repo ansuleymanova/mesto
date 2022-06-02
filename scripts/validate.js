@@ -55,7 +55,6 @@ const enableValidation = (settings) => {
 }
 
 enableValidation({
-    formSelector: '.popup__container',
     inputSelector: '.popup__field',
     submitButtonSelector: '.popup__save-button',
     inactiveButtonClass: 'popup__save-button_inactive',
