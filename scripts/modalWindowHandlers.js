@@ -25,13 +25,3 @@ const closePopupMouse = (evt) => {
         closeModalWindow(modalWindow);
     }
 }
-
-export const clearErrors = (modalWindow) => {
-    const errors = modalWindow.querySelectorAll('.popup__input-error_active');
-    if (errors) {
-        errors.forEach((error) => {
-            error.classList.remove('popup__input-error_active');
-            error.textContent = '';
-        });
-    }
-}

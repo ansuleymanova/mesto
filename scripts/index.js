@@ -9,12 +9,14 @@ const settings = {
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 import { initialCards } from './cards.js';
-import { openModalWindow, closeModalWindow, clearErrors } from './modalWindowHandlers.js';
+import { openModalWindow, closeModalWindow } from './modalWindowHandlers.js';
 
 const buttonEditProfile = document.querySelector('.profile-area__edit-button');
 const buttonAddCard = document.querySelector('.profile-area__add-button');
 const popupCard = document.querySelector('.popup_type_card');
+const formCard = popupCard.querySelector('.popup__container');
 const popupProfile = document.querySelector('.popup_type_profile');
+const formProfile = popupProfile.querySelector('.popup__container');
 const popupCloseup = document.querySelector('.popup_type_closeup');
 const cardsContainer = document.querySelector('.elements');
 const buttonCloseProfile = popupProfile.querySelector('.popup__close-icon');
@@ -29,22 +31,20 @@ const titleField = document.querySelector('.popup__field_type_title');
 const linkField = document.querySelector('.popup__field_type_picture-link');
 const profileForm = document.querySelector('.popup_type_profile');
 const cardForm = document.querySelector('.popup_type_card');
-const buttonSubmitCard = popupCard.querySelector('.popup__save-button');
-const formList = Array.from(document.querySelectorAll('.popup__container'));
+const profileValidator = new FormValidator(settings, formProfile);
+const cardValidator = new FormValidator(settings, formCard);
 
 const renderCard = (item) => {
     const card = new Card(item, '#card');
-    cardsContainer.prepend(card.createCard());
+    return card.createCard();
 }
 
 initialCards.forEach((item) => {
-    renderCard(item);
+    cardsContainer.prepend(renderCard(item));
 });
 
-formList.forEach((formElement) => {
-    const formValidator = new FormValidator(settings, formElement);
-    formValidator.enableValidation();
-})
+profileValidator.enableValidation();
+cardValidator.enableValidation();
 
 const handleCardSubmit = (evt) => {
     evt.preventDefault();
@@ -52,7 +52,10 @@ const handleCardSubmit = (evt) => {
         name: titleField.value,
         link: linkField.value
     };
-    renderCard(item);
+    cardsContainer.prepend(renderCard(item));
+    titleField.value = '';
+    linkField.value = '';
+    cardValidator.resetErrors();
     closeModalWindow(popupCard);
 }
 
@@ -60,25 +63,19 @@ const handleProfileSubmit = (evt) => {
     evt.preventDefault();
     heading.textContent = nameField.value;
     subheading.textContent = bioField.value;
+    profileValidator.resetErrors();
     closeModalWindow(popupProfile);
 }
 
 const openPopupProfile = () => {
     nameField.value = heading.textContent;
     bioField.value = subheading.textContent;
-    clearErrors(popupProfile);
     openModalWindow(popupProfile);
 }
 
-const openPopupCard = () => {
-    openModalWindow(popupCard);
-    titleField.value = '';
-    linkField.value = '';
-    clearErrors(popupCard);
-}
 
 buttonEditProfile.addEventListener('click', openPopupProfile);
-buttonAddCard.addEventListener('click', openPopupCard);
+buttonAddCard.addEventListener('click', () => openModalWindow(popupCard));
 buttonCloseProfile.addEventListener('click', () => closeModalWindow(popupProfile));
 buttonCloseCard.addEventListener('click', () => closeModalWindow(popupCard));
 buttonCloseCloseup.addEventListener('click', () => closeModalWindow(popupCloseup));
