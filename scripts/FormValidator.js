@@ -48,13 +48,9 @@ export class FormValidator {
     }
 
     resetErrors() {
-        const errors = this._formElement.querySelectorAll('.popup__input-error_active');
-        if (errors) {
-            errors.forEach((error) => {
-                error.classList.remove('popup__input-error_active');
-                error.textContent = '';
-            });
-        }
+        this._inputList.forEach((formInput) => {
+            this._hideInputError(formInput);
+        });
         this._toggleButtonState();
     }
 

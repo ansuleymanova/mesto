@@ -63,11 +63,11 @@ const handleProfileSubmit = (evt) => {
     evt.preventDefault();
     heading.textContent = nameField.value;
     subheading.textContent = bioField.value;
-    profileValidator.resetErrors();
     closeModalWindow(popupProfile);
 }
 
 const openPopupProfile = () => {
+    profileValidator.resetErrors();
     nameField.value = heading.textContent;
     bioField.value = subheading.textContent;
     openModalWindow(popupProfile);
