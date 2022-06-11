@@ -1,5 +1,3 @@
-import { openModalWindow } from './modalWindowHandlers.js'
-
 export default class Card {
     _templateSelector;
     _link;
