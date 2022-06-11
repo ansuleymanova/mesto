@@ -1,3 +1,4 @@
+import altay from '../images/altay.jpg'
 export const initialCards = [
     {
         name: 'Архыз',
@@ -21,6 +22,6 @@ export const initialCards = [
     },
     {
         name: 'Алтай',
-        link: 'images/altay.jpg'
+        link: altay
     }
 ];
