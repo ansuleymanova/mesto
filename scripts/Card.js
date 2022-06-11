@@ -1,6 +1,6 @@
 import { openModalWindow } from './modalWindowHandlers.js'
 
-export class Card {
+export default class Card {
     _templateSelector;
     _link;
     _name;
@@ -12,11 +12,12 @@ export class Card {
     _popupCloseupImage;
     _popupCloseupCaption;
 
-    constructor(item, templateSelector) {
+    constructor({ item, templateSelector, handleCardClick }) {
         this._templateSelector = templateSelector;
         this._element = this._getTemplate();
         this._link = item.link;
         this._name = item.name;
+        this._handleCardClick = handleCardClick;
         this._buttonLike = this._element.querySelector('.element__like-button');
         this._buttonDelete = this._element.querySelector('.element__delete-button');
         this._cardImage = this._element.querySelector('.element__picture');
@@ -34,10 +35,7 @@ export class Card {
     }
 
     _handleImagePopup() {
-        openModalWindow(this._popupCloseup);
-        this._popupCloseupImage.setAttribute('src', this._link);
-        this._popupCloseupImage.setAttribute('alt', this._name);
-        this._popupCloseupCaption.textContent = this._name;
+        this._handleCardClick(this._link, this._name);
     }
 
     _handleLikeCard() {
