@@ -1,6 +1,3 @@
-import altay from '../images/altay.jpg'
-
-
 export const settings = {
     inputSelector: '.popup__field',
     submitButtonSelector: '.popup__save-button',
@@ -9,33 +6,7 @@ export const settings = {
     errorClass: 'popup__field_type_error'
 }
 
-export const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Алтай',
-        link: altay
-    }
-];
-
+export const token = '61665773-9bef-493e-b175-1f96c36b4614'
 export const buttonEditProfile = document.querySelector('.profile-area__edit-button');
 export const buttonAddCard = document.querySelector('.profile-area__add-button');
 export const popupCard = document.querySelector('.popup_type_card');

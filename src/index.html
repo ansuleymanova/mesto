@@ -14,13 +14,13 @@
     <!-- user profile area -->
     <section class="profile-area">
         <div class="profile-area__profile">
-            <img class="profile-area__avatar" alt="Аватар пользователя" src="<%=require('./images/avatar.jpg')%>">
+            <img class="profile-area__avatar" alt="Аватар пользователя" src="">
             <div class="profile-area__profile-info">
                 <div class="profile-area__heading-edit">
-                    <h1 class="profile-area__heading">Жак-Ив Кусто</h1>
+                    <h1 class="profile-area__heading"></h1>
                     <button type="button" class="profile-area__edit-button" aria-label="Редактировать профиль"></button>
                 </div>
-                <p class="profile-area__subheading">Исследователь океана</p>
+                <p class="profile-area__subheading"></p>
             </div>
         </div>
         <button type="button" class="profile-area__add-button" aria-label="Добавить пост"></button>
@@ -74,6 +74,15 @@
         <img class="popup__image" alt="token" src="#">
         <p class="popup__caption"></p>
     </div>
+</div>
+
+<!-- deletion confirmation popup -->
+<div class="popup popup_type_confirm">
+    <button type="button" class="popup__close-icon" aria-label="Закрыть"></button>
+    <form class="popup__container" name="ConfirmDelete" novalidate>
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button type="button" class="popup__save-button">Да</button>
+    </form>
 </div>
 
 
