@@ -44,4 +44,5 @@
 @import url(blocks/popup/__field/_type/popup__field_type_error.css);
 @import url(blocks/element/__delete-button/_visible/element__delete-button_visible.css);
 @import url(blocks/profile-area/__overlay/profile-area__overlay.css);
+@import url(blocks/popup/__title/_type/popup__title_type_no-fields.css);
 

@@ -30,7 +30,7 @@ export default class Card {
         this._handleCardClick(this._link, this._name);
     }
 
-    _likeCard() {
+    toggleLikeCard() {
         this._buttonLike.classList.toggle('element__like-button_active');
         if (this._isLiked) {
             this._likesN -= 1;
@@ -38,8 +38,7 @@ export default class Card {
             this._likesN += 1;
         }
         this._isLiked = !this._isLiked;
-        this._likes.textContent = this._likesN;
-        this._handleCardLike(this.cardId);
+        this._likes.textContent = this._likesN
     }
 
     deleteCard() {
@@ -49,7 +48,7 @@ export default class Card {
 
     _setEventListeners() {
         this._cardImage.addEventListener('click', () => this._handleImagePopup());
-        this._buttonLike.addEventListener('click', () => this._likeCard());
+        this._buttonLike.addEventListener('click', () => this._handleCardLike(this.cardId));
         if (this._isOwner) {
             this._buttonDelete.addEventListener('click', (evt) => this._handleCardDelete(evt));
         }

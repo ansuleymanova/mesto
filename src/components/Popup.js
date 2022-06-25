@@ -4,9 +4,10 @@ export default class Popup {
         this._handleMouseClose = this._handleMouseClose.bind(this);
         this._handleEscClose = this._handleEscClose.bind(this);
         this._iconClose = this._popup.querySelector('.popup__close-icon');
+        this._buttonSave = this._popup.querySelector('.popup__save-button');
     }
 
-    open(parameter) {
+    open() {
         document.addEventListener('keydown',  this._handleEscClose);
         this._popup.classList.add('popup_opened');
     }
@@ -28,8 +29,16 @@ export default class Popup {
         }
     }
 
+    renderLoading(isLoading) {
+        if (isLoading) {
+            this._buttonSave.textContent = 'Сохранение...';
+        } else {
+            this._buttonSave.textContent = 'Сохранить';
+        }
+    }
+
     setEventListeners() {
         this._iconClose.addEventListener('click', () => this.close());
-        this._popup.addEventListener('click', this._handleMouseClose);
+        this._popup.addEventListener('mousedown', this._handleMouseClose);
     }
 }

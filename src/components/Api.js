@@ -3,23 +3,21 @@ import { token } from '../utils/constants.js'
 export default class Api {
     constructor(options) {
         this.url = options.url;
-        this._token = token;
-        this._headers = {
-            "Content-type": "application/json",
-            "authorization": this._token
+        this._headers = options.headers;
+    }
+
+    _getResponseData(res) {
+        if (!res.ok) {
+            return Promise.reject(`Ошибка: ${res.status}`);
         }
+        return res.json();
     }
 
     getInitialCards() {
         return fetch(this.url, {
             headers: this._headers
         })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json()
-                }
-                return Promise.reject(`Ошибка: ${res.status}`)
-            })
+            .then((res) => this._getResponseData(res));
     }
 
     postCard({ name, link }) {
@@ -30,25 +28,15 @@ export default class Api {
                 name: name,
                 link: link
             })
-        }).then((res) => {
-            if (res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`)
-        })
+        }).then((res) => this._getResponseData(res));
     }
 
     deleteCard(cardId) {
-        fetch(`${this.url}/${cardId}`, {
+        return fetch(`${this.url}/${cardId}`, {
                 method: 'DELETE',
                 headers: this._headers
             }
-        ).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`)
-        })
+        ).then((res) => this._getResponseData(res));
     }
 
     likeCard(cardId) {
@@ -56,36 +44,21 @@ export default class Api {
                 method: 'PUT',
                 headers: this._headers
             }
-        ).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`)
-        })
+        ).then((res) => this._getResponseData(res))
     }
 
     dislikeCard(cardId) {
-        fetch(`${this.url}/${cardId}/likes`, {
+        return fetch(`${this.url}/${cardId}/likes`, {
                 method: 'DELETE',
                 headers: this._headers
             }
-        ).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`)
-        })
+        ).then((res) => this._getResponseData(res))
     }
 
     getUserInfo() {
         return fetch(this.url, {
             headers: this._headers
-        }).then((res) => {
-            if (res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`)
-        })
+        }).then((res) => this._getResponseData(res))
     }
 
     patchUserInfo({ name, about }) {
@@ -96,12 +69,7 @@ export default class Api {
                 name: name,
                 about: about
             })
-        }).then((res) => {
-            if (res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`)
-        })
+        }).then((res) => this._getResponseData(res))
     }
 
     patchAvatar({ avatar }) {
@@ -111,12 +79,6 @@ export default class Api {
             body: JSON.stringify({
                 avatar: avatar
             })
-        }).then((res) => {
-            if (res.ok) {
-                console.log(res);
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`)
-        })
+        }).then((res) => this._getResponseData(res))
     }
 }
