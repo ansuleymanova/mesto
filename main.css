@@ -43,5 +43,6 @@
 .popup__input-error_active{color:red;font-size:12px;line-height:1.2;margin:5px 0 0;padding:0;position:absolute;top:138px;width:85%}.bio-error.popup__input-error_active,.picture-link-error.popup__input-error_active{top:195px}
 .popup__field_type_error{border-bottom:1px solid red}
 .element__delete-button_visible{visibility:visible}
-.profile-area__overlay{background-color:#000;background-image:url(a086f758840ae814ecde.svg);background-position:50%;background-repeat:no-repeat;border:none;height:120px;opacity:0;position:absolute;transition:opacity .3s ease-out;width:120px;z-index:3}.profile-area__overlay:hover{opacity:.8}
+.profile-area__overlay{background-color:#000;background-image:url(a086f758840ae814ecde.svg);background-position:50%;background-repeat:no-repeat;border:none;height:120px;opacity:0;position:absolute;transition:opacity .3s ease-out;width:120px;z-index:3}.profile-area__overlay:hover{cursor:pointer;opacity:.8}
+.popup__title_type_no-fields{margin-bottom:37px}
 
