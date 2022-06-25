@@ -12,4 +12,4 @@
 Проект построен без применения фреймворков на
 VanillaJS и организован по БЭМ.
 
-Посмотреть на блог можно [здесь](https://ansuleymanova.github.io/mesto/index.html).
+Посмотреть на блог можно [здесь](https://ansuleymanova.github.io/mesto).
