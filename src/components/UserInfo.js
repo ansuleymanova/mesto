@@ -14,11 +14,18 @@ export default class UserInfo {
     }
 
     setUserInfo({ name, bio, avatar, id }) {
-        this.id = id;
-        this._name.textContent = name;
-        this._bio.textContent = bio;
+        if (typeof id !== 'undefined') {
+            this.id = id;
+        }
+        if (typeof name !== 'undefined') {
+            this._name.textContent = name;
+        }
+        if (typeof bio !== 'undefined') {
+            this._bio.textContent = bio;
+        }
         if (typeof avatar !== 'undefined') {
-            this._avatar = avatar
+            this._avatar.src = avatar
+
         }
     }
 }

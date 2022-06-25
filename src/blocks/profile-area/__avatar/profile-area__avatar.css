@@ -5,6 +5,10 @@
     margin: 0 24px 0 0;
 }
 
+.profile-area__avatar:hover {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 715px) {
     .profile-area__avatar {
         margin: 0;

@@ -14,6 +14,7 @@
     <!-- user profile area -->
     <section class="profile-area">
         <div class="profile-area__profile">
+            <div class="profile-area__overlay"></div>
             <img class="profile-area__avatar" alt="Аватар пользователя" src="">
             <div class="profile-area__profile-info">
                 <div class="profile-area__heading-edit">
@@ -81,7 +82,19 @@
     <button type="button" class="popup__close-icon" aria-label="Закрыть"></button>
     <form class="popup__container" name="ConfirmDelete" novalidate>
         <h2 class="popup__title">Вы уверены?</h2>
-        <button type="button" class="popup__save-button">Да</button>
+        <button type="submit" class="popup__save-button">Да</button>
+    </form>
+</div>
+
+<!-- patch avatar popup -->
+<div class="popup popup_type_avatar">
+    <button type="button" class="popup__close-icon" aria-label="Закрыть"></button>
+    <form class="popup__container" name="patchAvatar" novalidate>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <label for="picture-link"></label>
+        <input type="url" name="avatar" class="popup__field popup__field_type_avatar" id="avatar" placeholder="Ссылка на картинку" required>
+        <span class="avatar-error"></span>
+        <button type="submit" class="popup__save-button popup__save-button_inactive" disabled>Сохранить</button>
     </form>
 </div>
 
@@ -93,7 +106,10 @@
         <img class="element__picture" alt="token" src="#">
         <div class="element__info">
             <h3 class="element__heading"></h3>
-            <button type="button" class="element__like-button" aria-label="Нравится"></button>
+            <div class="element__like-area">
+                <button type="button" class="element__like-button" aria-label="Нравится"></button>
+                <p class="element__likes"></p>
+            </div>
         </div>
     </article>
 </template>
