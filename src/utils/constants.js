@@ -18,4 +18,3 @@ export const formCard = popupCard.querySelector('.popup__container');
 export const formAvatar = popupAvatar.querySelector('.popup__container');
 export const popupProfile = document.querySelector('.popup_type_profile');
 export const formProfile = popupProfile.querySelector('.popup__container');
-export const popupConfirm = document.querySelector('.popup_type_confirm');

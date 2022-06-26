@@ -14,14 +14,14 @@ export default class Api {
     }
 
     getInitialCards() {
-        return fetch(this.url, {
+        return fetch(`${this.url}cards`, {
             headers: this._headers
         })
             .then((res) => this._getResponseData(res));
     }
 
     postCard({ name, link }) {
-        return fetch(this.url, {
+        return fetch(`${this.url}cards`, {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
@@ -32,7 +32,7 @@ export default class Api {
     }
 
     deleteCard(cardId) {
-        return fetch(`${this.url}/${cardId}`, {
+        return fetch(`${this.url}cards/${cardId}`, {
                 method: 'DELETE',
                 headers: this._headers
             }
@@ -40,7 +40,7 @@ export default class Api {
     }
 
     likeCard(cardId) {
-        return fetch(`${this.url}/${cardId}/likes`, {
+        return fetch(`${this.url}cards/${cardId}/likes`, {
                 method: 'PUT',
                 headers: this._headers
             }
@@ -48,7 +48,7 @@ export default class Api {
     }
 
     dislikeCard(cardId) {
-        return fetch(`${this.url}/${cardId}/likes`, {
+        return fetch(`${this.url}cards/${cardId}/likes`, {
                 method: 'DELETE',
                 headers: this._headers
             }
@@ -56,13 +56,13 @@ export default class Api {
     }
 
     getUserInfo() {
-        return fetch(this.url, {
+        return fetch(`${this.url}users/me`, {
             headers: this._headers
         }).then((res) => this._getResponseData(res))
     }
 
     patchUserInfo({ name, about }) {
-        return fetch(this.url, {
+        return fetch(`${this.url}users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
@@ -73,7 +73,7 @@ export default class Api {
     }
 
     patchAvatar({ avatar }) {
-        return fetch(`${this.url}/avatar`, {
+        return fetch(`${this.url}users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({

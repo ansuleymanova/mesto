@@ -22,34 +22,19 @@ import Card from '../components/Card.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithButton from '../components/PopupWithButton';
 
-const headers = {
-    "Content-type": "application/json",
-    "authorization": token
-};
-
-const cardsApi = new Api({
-    url: 'https://mesto.nomoreparties.co/v1/cohort-43/cards',
-    headers: headers})
-
-const profileApi = new Api({
-    url: 'https://nomoreparties.co/v1/cohort-43/users/me',
-    method: 'PATCH',
-    headers: headers})
+const api = new Api({
+    url: 'https://mesto.nomoreparties.co/v1/cohort-43/',
+    headers: {
+        "Content-type": "application/json",
+        "authorization": token
+    }
+})
 
 const userInfo = new UserInfo({
     nameSelector: '.profile-area__heading',
     bioSelector: '.profile-area__subheading',
     avatarSelector: '.profile-area__avatar'
 });
-
-
-profileApi.getUserInfo().then((res) => {
-    userInfo.setUserInfo({
-        name: res.name,
-        bio: res.about,
-        avatar: res.avatar,
-        id: res._id});
-}).catch((err) => console.log(err))
 
 const profileValidator = new FormValidator(settings, formProfile);
 const cardValidator = new FormValidator(settings, formCard);
@@ -59,7 +44,7 @@ const popupCloseUpImage = new PopupWithImage('.popup_type_closeup');
 const popupConfirm = new PopupWithButton({
     handler: (evt, card) => {
         evt.preventDefault();
-        cardsApi.deleteCard(card.cardId).then(() => {
+        api.deleteCard(card.cardId).then(() => {
             card.deleteCard();
             popupConfirm.close();
         }).catch((err) => console.log(err))
@@ -80,11 +65,11 @@ const composeCard = (item) => {
             },
         handleCardLike: (cardId) => {
             if (item.isLiked) {
-                cardsApi.dislikeCard(cardId)
+                api.dislikeCard(cardId)
                     .then(() => card.toggleLikeCard())
                     .catch((err) => console.log(err));
             } else {
-                cardsApi.likeCard(cardId)
+                api.likeCard(cardId)
                     .then(() => card.toggleLikeCard())
                     .catch((err) => console.log(err));
             }
@@ -99,11 +84,19 @@ const section = new Section({
             section.addItem(card)},
         containerSelector: '.elements'});
 
-cardsApi.getInitialCards().then((cards) => {
-    cards.reverse();
+Promise.all([
+    api.getUserInfo(),
+    api.getInitialCards()
+]).then(([info, initialCards]) => {
+    userInfo.setUserInfo({
+        name: info.name,
+        bio: info.about,
+        avatar: info.avatar,
+        id: info._id});
+    initialCards.reverse();
     const cardsClean = []
     const user = userInfo.getUserInfo();
-    cards.forEach((card) => {
+    initialCards.forEach((card) => {
         const isLiked = card.likes.some(like => like['_id'] === user.id);
         const item = {
             name: card.name,
@@ -115,14 +108,14 @@ cardsApi.getInitialCards().then((cards) => {
         }
         cardsClean.push(item);
     })
-        section.renderElements(cardsClean);
+    section.renderElements(cardsClean);
 }).catch((err) => console.log(err))
 
 const popupCardForm = new PopupWithForm({
     handler: (evt, input) => {
         evt.preventDefault();
         popupCardForm.renderLoading(true);
-        cardsApi.postCard({
+        api.postCard({
             name: input.title,
             link: input.link
         })
@@ -146,16 +139,11 @@ const popupCardForm = new PopupWithForm({
     popupSelector: '.popup_type_card',
 })
 
-function popupOpener(popup, validator) {
-    validator.resetErrors();
-    popup.open()
-}
-
 const popupProfileForm = new PopupWithForm({
     handler: (evt, input) => {
         evt.preventDefault();
         popupProfileForm.renderLoading(true);
-        profileApi.patchUserInfo({
+        api.patchUserInfo({
             name: input.name,
             about: input.bio
         }).then((res) => {
@@ -177,7 +165,7 @@ const popupAvatarForm = new PopupWithForm({
     handler: (evt, input) => {
         evt.preventDefault();
         popupAvatarForm.renderLoading(true);
-        profileApi.patchAvatar({
+        api.patchAvatar({
             avatar: input.avatar
         }).then((res) => {
             userInfo.setUserInfo({
@@ -193,6 +181,10 @@ const popupAvatarForm = new PopupWithForm({
     },
     popupSelector: '.popup_type_avatar',
 })
+function popupOpener(popup, validator) {
+    validator.resetErrors();
+    popup.open()
+}
 
 const popupProfileOpener = () => {
     const { name, bio } = userInfo.getUserInfo();
